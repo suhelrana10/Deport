@@ -25,7 +25,14 @@ class LineItemsController < ApplicationController
   def create
     product = Product.find(params[:product_id])
 
-    render body: product.line_items.inspect
+    @line_item =  @cart.add_product(product)
+
+      # line_items.build(product: product)
+
+    if( @line_item.save)
+      redirect_to  @cart, notice:'line item successfully created'
+
+    end
 
 
     # @line_item = LineItem.new(line_item_params)

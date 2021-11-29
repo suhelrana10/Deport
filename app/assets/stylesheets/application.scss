@@ -68,6 +68,7 @@ body {
         @media(min-width: 30em){
           padding-right: 1em;
         }
+
         li{
           margin: 0;
           padding:.354em;
@@ -85,6 +86,14 @@ body {
         }
 
       }
+
+
+
+    }
+
+    .main .notice, #notice{
+      background-color: #ffb;
+      border-radius: 0.5em;
 
     }
 

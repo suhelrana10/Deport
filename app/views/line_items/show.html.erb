@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Product:</strong>
-  <%= @line_item.product %>
-</p>
+<h1>your Pragmatic card </h1>
+ <%= params %>
 
-<p>
-  <strong>Cart:</strong>
-  <%= @line_item.cart %>
-</p>
 
-<%= link_to 'Edit', edit_line_item_path(@line_item) %> |
+<%# @cart do  |item|%>
+
+<!--    <p><%#= item.product.title %></p>-->
+  <%# end %>
+<!--<p>-->
+<!--  <strong>Product:</strong>-->
+  <%#= @line_item.product.title %>
+<!--</p>-->
+
+<!--<p>-->
+<!--  <strong>Cart:</strong>-->
+  <%#= @line_item.cart %>
+<!--</p>-->
+
+<%= link_to 'Edit', edit_line_item_path%> |
 <%= link_to 'Back', line_items_path %>

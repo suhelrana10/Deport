@@ -1,4 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<h2>Your Card Items</h2>
+
+ <ul>
+<% @cart.line_items.each do  |item| %>
+
+  <li><%= item.counter %> &times <%= item.product.title %> <%= item.total_price %></li>
+
+ <%end %>
+
+ </ul>
+
+<%= button_to 'Empty Card', @cart, method: :delete,
+              data:{confirm: 'are you sure '}
+%>
+
+<!--<%#= link_to 'Edit', edit_cart_path(@cart) %> |-->
+<%#= link_to 'Back', carts_path %>
