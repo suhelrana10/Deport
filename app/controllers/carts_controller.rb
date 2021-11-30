@@ -10,6 +10,7 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+    @cart_total = Cart.new.total_amount
   end
 
   # GET /carts/new

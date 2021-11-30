@@ -11,6 +11,8 @@
 
  </ul>
 
+ <%= number_to_currency @cart.total_amount %>
+
 <%= button_to 'Empty Card', @cart, method: :delete,
               data:{confirm: 'are you sure '}
 %>
