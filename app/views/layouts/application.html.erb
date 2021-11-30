@@ -18,6 +18,17 @@
     <section class="content">
        
        <nav class="side_nav">
+
+       <%  if @cart %>
+
+       <div id="cart" class="carts">
+         <%= render @cart %>
+       </div>
+
+         <% end %>
+
+
+
          <ul>
           <li><a href='/'>Home</a></li>
           <li><a  href='/'>Questions</a></li>

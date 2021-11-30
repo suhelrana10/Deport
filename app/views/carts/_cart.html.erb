@@ -1,0 +1,40 @@
+<!--<p id="notice"><%#= notice %></p>-->
+
+<h2>Your Card Items</h2>
+
+<table>
+
+
+
+  <% @cart.line_items.each do |line_item| %>
+    <%= render('line_items/line_item',line_item:line_item) %>
+  <% end %>
+
+
+  <tfoot>
+  <tr>
+    <th colspan="2">
+      Total
+    </th>
+
+    <td class="price">
+      <%= number_to_currency(@cart.total_amount) %>
+      <%= button_to 'Empty Card', @cart, method: :delete, data:{confirm: 'are you sure '}%>
+
+    </td>
+  </tr>
+  </tfoot>
+
+</table>
+
+
+
+
+
+<%#= button_to 'Empty Card', @cart, method: :delete, data:{confirm: 'are you sure '}-->%>
+
+<%#= link_to 'Edit', edit_cart_path(@cart) %>
+<%#= link_to 'Back', carts_path %>
+
+
+<%# render@cart %>

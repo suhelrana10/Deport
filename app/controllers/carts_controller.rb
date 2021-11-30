@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+
   before_action :set_cart, only: %i[ show edit update destroy ]
 
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_card
@@ -10,7 +11,7 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
-    @cart_total = Cart.new.total_amount
+
   end
 
   # GET /carts/new
@@ -62,7 +63,7 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find(params[:id])
+      @cart = Cart.find_by_id(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

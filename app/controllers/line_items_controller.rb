@@ -2,7 +2,6 @@ class LineItemsController < ApplicationController
   include CurrentCart
 
   before_action :set_cart, only: %i[ create ]
-
   before_action :set_line_item, only: %i[ show edit update destroy ]
 
   # GET /line_items or /line_items.json
@@ -28,28 +27,18 @@ class LineItemsController < ApplicationController
 
     product = Product.find(params[:product_id])
 
-    @line_item =  Cart.new.add_product(product)
+    @line_item = @cart.add_product(product)
 
-      # line_items.build(product: product)
-
-    if( @line_item.save)
-
-      redirect_to  cart_url(id:@cart.id), notice:'line item successfully created'
-
+    respond_to do |format|
+      if @line_item.save
+        format.html {  redirect_to  store_index_url, notice:'line item successfully created' }
+        format.js
+        format.json { render :show, status: :created, location: @line_item }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      end
     end
-
-
-    # @line_item = LineItem.new(line_item_params)
-    #
-    # respond_to do |format|
-    #   if @line_item.save
-    #     format.html { redirect_to @line_item, notice: "Line item was successfully created." }
-    #     format.json { render :show, status: :created, location: @line_item }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @line_item.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /line_items/1 or /line_items/1.json

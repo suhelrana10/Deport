@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+
 //= require_tree .
 
-console.log("hellow from javascript")
+
