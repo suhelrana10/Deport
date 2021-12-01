@@ -6,7 +6,7 @@
 
 
 
-  <% @cart.line_items.each do |line_item| %>
+  <% cart.line_items.each do |line_item| %>
     <%= render('line_items/line_item',line_item:line_item) %>
   <% end %>
 
@@ -18,7 +18,7 @@
     </th>
 
     <td class="price">
-      <%= number_to_currency(@cart.total_amount) %>
+      <%= number_to_currency(cart.total_amount) %>
       <%= button_to 'Empty Card', @cart, method: :delete, data:{confirm: 'are you sure '}%>
 
     </td>

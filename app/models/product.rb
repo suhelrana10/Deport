@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
 
   validates :title, :description, :image_url, presence:{message: "%{value} must be present"}
   validates :title, uniqueness:{case_sensitive: false},length:{in: 5..20}
