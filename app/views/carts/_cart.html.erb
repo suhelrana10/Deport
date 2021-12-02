@@ -2,7 +2,7 @@
 
 <h2>Your Card Items</h2>
 
-<table>
+<table class="product-items" >
 
 
 
@@ -19,9 +19,23 @@
 
     <td class="price">
       <%= number_to_currency(cart.total_amount) %>
-      <%= button_to 'Empty Card', @cart, method: :delete, data:{confirm: 'are you sure '}%>
-
     </td>
+
+
+
+  </tr>
+
+  <tr>
+    <th colspan="2">
+      <%= button_to 'Empty Card', @cart, method: :delete, data:{confirm: 'are you sure '} %>
+    </th>
+
+    <td class="price">
+      <%= button_to 'Check OUt',new_order_path, method: :get, class:"checkout" %>
+    </td>
+
+
+
   </tr>
   </tfoot>
 
@@ -31,7 +45,6 @@
 
 
 
-<%#= button_to 'Empty Card', @cart, method: :delete, data:{confirm: 'are you sure '}-->%>
 
 <%#= link_to 'Edit', edit_cart_path(@cart) %>
 <%#= link_to 'Back', carts_path %>

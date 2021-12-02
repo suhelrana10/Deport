@@ -1,8 +1,9 @@
 
-<tr>
-  <td class="quantity"><%= line_item.counter %> &times</td>
+<tr id="cart-product-<%= line_item.product.id %>">
 
-  <td class="quantity"><%= line_item.product.title %></td>
+  <td class="quantity"><%= line_item.counter %></td>
+
+  <td class="title"><%= line_item.product.title %></td>
 
 
   <td class="price"><%= line_item.total_price %></td>

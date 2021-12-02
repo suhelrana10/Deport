@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
+  include CurrentCart
+
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_cart
+  before_action :ensure_cart_is_not_empty, only: %i[ create ]
 
   # GET /orders or /orders.json
   def index
@@ -23,8 +27,12 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
 
+    @order.add_line_item_from_cart(@cart)
+
     respond_to do |format|
       if @order.save
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
         format.html { redirect_to @order, notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
@@ -58,12 +66,20 @@ class OrdersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+   def ensure_cart_is_not_empty
+
+     if @cart.line_items.empty?
+       redirect_to store_index_url, notice: "cart is empty"
+     end
+   end
+
     def set_order
       @order = Order.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:address, :email, :pay_type)
+      params.require(:order).permit(:address, :email, :pay_type, :name)
     end
 end

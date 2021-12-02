@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   include CurrentCart
 
+
   before_action :set_product, only: %i[ show edit update destroy ]
 
   before_action :set_cart
@@ -47,9 +48,7 @@ class ProductsController < ApplicationController
         format.json { render :show, status: :ok, location: @product }
 
         @products = Product.all.order(:title)
-        ActionCable.server.broadcast 'products',
-                                     html: render_to_string('store/index', layout:false),
-                                     html1: render_to_string('carts/show', layout:false)
+        ActionCable.server.broadcast 'products', { product: @product }
 
 
 

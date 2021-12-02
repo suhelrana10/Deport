@@ -3,7 +3,9 @@
 
 <ul class="catalog">
   <%  @products.each do |product| %>
-   <li>
+
+   <li id="product-<%= product.id %>">
+
       <%= image_tag(product.image_url) %>
 
       <h2><%= product.title %></h2>
@@ -13,11 +15,10 @@
 
      <div class="price">
        <%= number_to_currency(product.price, unit:"৳") %>
-
-       <%= button_to 'Add to Cart', line_items_path(product_id: product),remote: true %>
-
-
      </div>
+
+     <%= button_to 'Add to Cart', line_items_path(product_id: product),remote: true %>
+
 
    </li>
    
