@@ -25,21 +25,30 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
 
-    @order.add_line_item_from_cart(@cart)
-
-    respond_to do |format|
-      if @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        format.html { redirect_to @order, notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    # render body: OrderMailer.received and return
+    OrderMailer.received.deliver_later and return
+    # @order = Order.new(order_params)
+    #
+    #
+    # @order.add_line_item_from_cart(@cart)
+    #
+    # respond_to do |format|
+    #   if @order.save
+    #     Cart.destroy(session[:cart_id])
+    #     session[:cart_id] = nil
+    #
+    #
+    #      OrderMailer.received.deliver_now
+    #
+    #
+    #     format.html { redirect_to @order, notice: "Order was successfully created." }
+    #     format.json { render :show, status: :created, location: @order }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @order.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json

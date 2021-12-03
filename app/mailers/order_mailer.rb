@@ -1,4 +1,4 @@
-class OrderMailer < ApplicationMailer
+class OrderMailer < BaseMailer
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -6,9 +6,11 @@ class OrderMailer < ApplicationMailer
   #   en.order_mailer.received.subject
   #
   def received
-    @greeting = "Hi"
 
-    mail to: "to@example.org"
+    @greeting = "Hi"
+       mail to: %w[alisha878790@gmail.com sohelmbstucse@gmail.com],
+            subject: "order confirm mail"
+
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -21,4 +23,5 @@ class OrderMailer < ApplicationMailer
 
     mail to: "to@example.org"
   end
+
 end
