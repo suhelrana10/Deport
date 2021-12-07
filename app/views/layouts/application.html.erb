@@ -37,7 +37,19 @@
           <li><a  href='/'>News</a></li>
           <li><a  href='/'>Contact</a></li>
          </ul>
+
+
+         <ul>
+           <li><%= link_to 'Orders', orders_path %></li>
+           <li><%= link_to 'Orders', products_path %></li>
+           <li><%= link_to 'Orders', users_path %></li>
+           <li><%=  button_to  'Logout' , logout_path , method: :delete, data: { confirm: 'do uy want to log out'} %></li>
+         </ul>
+
+
        </nav>
+
+
 
        <main class=' <%= controller.controller_name  %>'>
 

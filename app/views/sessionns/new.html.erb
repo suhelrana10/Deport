@@ -1,0 +1,40 @@
+
+<section class="login_form">
+
+
+  <%if flash[:notice] %>
+    <%= flash[:notice] %>
+  <%end %>
+
+  <%#= form_tag do %>
+<!--  <h2>PLease Log IN </h2>-->
+
+<!--    <div class="field">-->
+      <%#= label_tag :name, 'Name:'%>
+      <%#= text_field_tag :name%>
+<!--    </div>-->
+
+<!--    <div class="field">-->
+      <%#= label_tag :password, 'Password:'%>
+      <%#= password_field_tag :password %>
+<!--    </div>-->
+
+
+<!--    <div class="field">-->
+
+      <%#= submit_tag 'Login' %>
+<!--    </div>-->
+
+  <%#end %>
+
+  <form action="login" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type='text' name="name">
+    <input type="password" name="password">
+    <input type="submit" value="submit">
+
+  </form>
+
+  <div> <%= button_to 'logout', logout_url,  method: :delete %></div>
+
+</section>

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  skip_before_action :authorize
   include CurrentCart
 
 
